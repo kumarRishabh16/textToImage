@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Generation</title>
+    <style>
+        /* Add some styling to the form */
+        form {
+            margin: 50px auto;
+            width: 80%;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <label for="prompt">Text to Image :)</label>
+        <textarea name="prompt" placeholder="Enter the text you want to use to generate the image..."></textarea>
+        <input type="submit" value="Generate Image">
+        <div>   
+       {% if image_url %}
+        {% for image in image_url %}
+            <img src="{{ image_url }}">
+         {% endfor %}
+        {% endif %}
+    </div>
+        
+        
+    </form>
+</body>
+</html>
